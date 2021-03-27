@@ -1,7 +1,7 @@
 import store from "./store";
 
 async function api_get(path) {
-  let text = await fetch("http://localhost:4000/api/v1" + path, {});
+  let text = await fetch("http://events-spa.ereed.xyz/api/v1" + path, {});
   let resp = await text.json();
   return resp.data;
 }
@@ -14,7 +14,7 @@ async function api_post(path, data) {
     },
     body: JSON.stringify(data),
   };
-  let resp = await fetch("http://localhost:4000/api/v1" + path, opts);
+  let resp = await fetch("http://events-spa.ereed.xyz/api/v1" + path, opts);
   return await resp.json();
 }
 
@@ -84,7 +84,7 @@ export async function create_event(event) {
   data.append("event[user_id]", event.user_id)
   data.append("event[date_time_iso]", event.date_time_iso)
   console.log(data)
-  let resp = await fetch("http://localhost:4000/api/v1/events", {
+  let resp = await fetch("http://events-spa.ereed.xyz/api/v1/events", {
     method: "POST",
     // Fetch will handle reading the file object and
     // submitting this as a multipart/form-data request.
@@ -100,7 +100,7 @@ export async function create_user(user) {
   data.append("user[email]", user.email)
   data.append("user[password]", user.password)
   console.log(data)
-  let resp = await fetch("http://localhost:4000/api/v1/users", {
+  let resp = await fetch("http://events-spa.ereed.xyz/api/v1/users", {
     method: "POST",
     // Fetch will handle reading the file object and
     // submitting this as a multipart/form-data request.
@@ -115,7 +115,7 @@ export async function create_invite(email, event_id) {
   data.append("email", email);
   data.append("event_id", event_id);
   console.log(data);
-  let resp = await fetch("http://localhost:4000/api/v1/invites", {
+  let resp = await fetch("http://events-spa.ereed.xyz/api/v1/invites", {
     method: "POST",
     // Fetch will handle reading the file object and
     // submitting this as a multipart/form-data request.

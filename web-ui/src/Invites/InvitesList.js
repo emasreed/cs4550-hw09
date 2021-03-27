@@ -8,11 +8,11 @@ import { useEffect, useCallback } from "react";
 function InvitesList({ invites, session }) {
   const getinvitesCallback = useCallback(() => {
     let event_id=window.location.href.split("=")
-    if (event_id.length > 0){
+    if (event_id.length > 1){
         event_id=event_id[1]
         fetch_invites_by_event(event_id)
     }else{
-        fetch_events(session.user_id)
+        fetch_invites(session.user_id)
     }
     console.log(invites);
   });

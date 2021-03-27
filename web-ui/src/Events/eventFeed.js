@@ -6,7 +6,7 @@ import { useEffect, useCallback } from "react";
 
 function photo_path(event) {
     console.log(event)
-  return "http://localhost:4000/photos/" + event.user.photo_hash;
+  return "http://events-spa.ereed.xyz/photos/" + event.user.photo_hash;
 }
 
 function Feed({events, session}) {
