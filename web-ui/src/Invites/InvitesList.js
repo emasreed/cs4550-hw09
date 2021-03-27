@@ -7,7 +7,7 @@ import { useEffect, useCallback } from "react";
 
 function InvitesList({ invites, session }) {
   const getinvitesCallback = useCallback(() => {
-    let event_id=window.location.href.split("=")
+    let event_id=window.location.href.split("event_id=")
     if (event_id.length > 0){
         event_id=event_id[1]
         fetch_invites_by_event(event_id)
