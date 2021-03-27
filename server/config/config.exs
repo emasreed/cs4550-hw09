@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :events_app,
-  ecto_repos: [EventsApp.Repo]
+  ecto_repos: [EventsApp.Repo],
+  mix_env: "#{Mix.env()}"
 
 # Configures the endpoint
 config :events_app, EventsAppWeb.Endpoint,
@@ -17,6 +18,7 @@ config :events_app, EventsAppWeb.Endpoint,
   render_errors: [view: EventsAppWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: EventsApp.PubSub,
   live_view: [signing_salt: "aww7I9v7"]
+
 
 # Configures Elixir's Logger
 config :logger, :console,

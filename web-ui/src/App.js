@@ -1,25 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container } from "react-bootstrap";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-function App() {
+import Feed from "./Events/eventFeed";
+import "./App.scss";
+import UsersList from "./Users/List";
+import UsersNew from "./Users/New";
+import Nav from "./Nav";
+import EventsNew from "./Events/newEvent";
+import InvitesList from "./Invites/InvitesList";
+import InviteNew from "./Invites/newInvite"
+import NotLoggedIn from "./notLoggedIn"
+
+function App({session}) {
+  let body = (
+    <Switch>
+      <Route path="/" exact>
+        <NotLoggedIn />
+      </Route>
+      <Route path="/users" exact>
+        <UsersList />
+      </Route>
+      <Route path="/users/new">
+        <UsersNew />
+      </Route>
+      <Route path="/events/new">
+        <NotLoggedIn />
+      </Route>
+      <Route path="/invites" exact>
+        <NotLoggedIn />
+      </Route>
+      <Route path="/invites/new">
+        <NotLoggedIn />
+      </Route>
+    </Switch>
+  );
+  if (session){
+    body = (
+      <Switch>
+        <Route path="/" exact>
+          <Feed />
+        </Route>
+        <Route path="/users" exact>
+          <UsersList />
+        </Route>
+        <Route path="/users/new">
+          <UsersNew />
+        </Route>
+        <Route path="/events/new">
+          <EventsNew />
+        </Route>
+        <Route path="/invites" exact>
+          <InvitesList />
+        </Route>
+        <Route path="/invites/new">
+          <InviteNew />
+        </Route>
+      </Switch>
+    );
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Nav />
+      {body}
+    </Container>
   );
 }
 
-export default App;
+export default connect(({ session }) => ({ session }))(App);

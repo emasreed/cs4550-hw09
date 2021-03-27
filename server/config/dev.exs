@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :events_app, EventsApp.Repo,
   username: "postgres",
-  password: "postgres",
+  password: System.get_env("POSTGRES_PASSWORD"),
   database: "events_app_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -66,3 +66,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :cors_plug,
+  origin: ["http://localhost:3000"],
+  max_age: 86400,
+  methods: ["GET", "POST", "PATCH", "DELETE"]
