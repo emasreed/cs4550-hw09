@@ -30,12 +30,15 @@ function Feed({events, session}) {
     <tr key={event.id}>
       <td>{event.name}</td>
       <td>{event.description}</td>
+      <td>{event.date_time}</td>
       <td>{event.user.name}</td>
       <td>
         <Image src={photo_path(event)} className="userIcon" />
       </td>
       <td>
         {owns_event(event)}
+        <br />
+        <Link to={`/invites?event_id=${event.id}`}>See Invites</Link>
       </td>
     </tr>
   ));
@@ -53,6 +56,7 @@ function Feed({events, session}) {
               <tr>
                 <th>Event Name</th>
                 <th>Event Description</th>
+                <th>Event DateTime</th>
                 <th>Event Owner</th>
                 <th>Event Owner Icon</th>
                 <th>Links</th>
